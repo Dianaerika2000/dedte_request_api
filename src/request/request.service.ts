@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { CreateRequestDto } from './dto/create-request.dto';
 import { UpdateRequestDto } from './dto/update-request.dto';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -34,12 +34,18 @@ export class RequestService {
     };
   }
 
-  findAll() {
-    return `This action returns all request`;
+  async findAll() {
+    return await this.requestRepository.find();;
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} request`;
+  async findOne(id: number) {
+    const event = await this.requestRepository.findOneBy({ id: id });
+
+    if (!event) {
+      throw new NotFoundException('Event not found');
+    }
+
+    return event;
   }
 
   update(id: number, updateRequestDto: UpdateRequestDto) {
