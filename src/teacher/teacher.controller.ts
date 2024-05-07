@@ -8,7 +8,12 @@ export class TeacherController {
   constructor(private readonly teacherService: TeacherService) {}
 
   @Post()
-  create(@Body() createTeacherDto: CreateTeacherDto) {
+  create(@Body() createTeacherDto: any) {
+    // Convertir campos a los tipos correctos
+    createTeacherDto.status = createTeacherDto.status === 'true';
+    createTeacherDto.request_id = parseInt(createTeacherDto.request_id, 10);
+
+    // Llamar al método create del servicio con los datos convertidos
     return this.teacherService.create(createTeacherDto);
   }
 

@@ -4,23 +4,19 @@
 
 
 
-<p>Nos encantaría contar con su aprobación. Por favor, confirme haciendo clic en una de las siguientes opciones:</p>
-
-<table>
-    <tr>
-        <td>
-            <form action="{{  }}" method="post" style="display: inline;">
-                <button type="submit"
-                    style="background-color: blue; color: white; padding: 10px 20px; border: none; cursor: pointer;">Aceptar solicitud</button>
-            </form>
-        </td>
-        <td>
-            <form action="{{  }}" method="post" style="display: inline;">
-                <button type="submit"
-                    style="background-color: gray; color: white; padding: 10px 20px; border: none; cursor: pointer;">Rechazar</button>
-            </form>
-        </td>
-    </tr>
-</table>
-
-<p>¡Esperamos verte allí!</p>
+<form action="{{ url }}" method="post">
+  <input type="hidden" name="email" value="{{ email }}">
+  <input type="hidden" name="request_id" value="{{ idRequest }}">
+  
+  <p>Nos encantaría contar con su aprobación. Por favor, seleccione una de las siguientes opciones:</p>
+  <div>
+    <input type="radio" id="option1" name="status" value="true">
+    <label for="option1">Aceptar solicitud</label>
+  </div>
+  <div>
+    <input type="radio" id="option2" name="status" value="false">
+    <label for="option2">Rechazar solicitud</label>
+  </div>
+  
+  <button type="submit" style="margin-top: 10px; background-color: blue; color: white; padding: 10px 20px; border: none; cursor: pointer;">Enviar</button>
+</form>

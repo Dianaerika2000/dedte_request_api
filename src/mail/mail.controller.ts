@@ -19,7 +19,7 @@ export class MailController {
 
   @Post('send')
   sendEmail(@Body() createRequestMailDto: CreateRequestMailDto) {
-    return this.mailService.sendEmail(createRequestMailDto.email, createRequestMailDto.subject, createRequestMailDto.description);
+    return this.mailService.sendEmail(createRequestMailDto.email, createRequestMailDto.subject, createRequestMailDto.description, 2);
   }
 
 }

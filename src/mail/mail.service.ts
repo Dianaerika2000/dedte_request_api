@@ -6,6 +6,7 @@ import { MailerService } from '@nestjs-modules/mailer';
 import { DataEvent } from './interface/dataEvent.interface';
 import { Events } from 'src/event/entities/event.entity';
 import { ConfigService } from '@nestjs/config';
+import { url } from 'inspector';
 
 @Injectable()
 export class MailService {
@@ -85,15 +86,18 @@ export class MailService {
     return 'This action adds a new mail';
   }
 
-  async sendEmail(email: string, subject: string, description: string) {
-    const frontendDomain = this.configService.get('FRONTEND_DOMAIN');
+  async sendEmail(email: string, subject: string, description: string, idRequest:number) {
+    const urlEndpoint = this.configService.get('ENDPOINT');
 
     await this.mailerService.sendMail({
       to: email,
       subject: subject,
       template: './solicitud',
       context: {
-        description: description
+        description: description,
+        email: email,
+        idRequest: idRequest,
+        url: urlEndpoint,
       },
     });
   }

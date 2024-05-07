@@ -25,8 +25,9 @@ export class RequestService {
     });
 
     await this.requestRepository.save(request);
+    // console.log('newRequest', newRequest);
 
-    await this.sendInvitationToTeachers(people, subject, description);
+    // await this.sendInvitationToTeachers(people, subject, description, request.id);
 
     return {
       message: 'Solicitud enviada correctamente',
@@ -56,9 +57,9 @@ export class RequestService {
     return `This action removes a #${id} request`;
   }
 
-  private async sendInvitationToTeachers(teachers: Teacher[], subject: string, description: string) {
+  private async sendInvitationToTeachers(teachers: Teacher[], subject: string, description: string, idRequest: number) {
     teachers.map((teacher) => {
-      this.mailService.sendEmail(teacher.email, subject, description);
+      this.mailService.sendEmail(teacher.email, subject, description, idRequest);
     });
   }
 }
