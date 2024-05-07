@@ -20,7 +20,7 @@ import { join } from 'path';
             },
           },
           defaults: {
-            from: `"No Reply" <${config.get('MAIL_FROM')}>`,
+            from: `"DEDTE" <${config.get('MAIL_FROM')}>`,
           },
           template: {
             dir: join(__dirname, 'templates'),
