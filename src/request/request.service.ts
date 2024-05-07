@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { CreateRequestDto } from './dto/create-request.dto';
 import { UpdateRequestDto } from './dto/update-request.dto';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -38,8 +38,14 @@ export class RequestService {
     return `This action returns all request`;
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} request`;
+  async findOne(id: number) {
+    const request = await this.requestRepository.findOneBy({id});
+
+    if (!request) {
+      throw new NotFoundException(`La solicitud con el ${id} no fue encontrado`);
+    }
+
+    return request;
   }
 
   update(id: number, updateRequestDto: UpdateRequestDto) {

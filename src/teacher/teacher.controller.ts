@@ -17,6 +17,16 @@ export class TeacherController {
     return this.teacherService.findAll();
   }
 
+  @Get('status/:status/request/:requestId')
+  findAllByStatusAndRequestId(
+    @Param('status') status: string,
+    @Param('requestId') requestId: string
+  ){
+    const isStatusActive = status === 'true'; // Convertir el parámetro de string a booleano
+    const requestIdNumber = parseInt(requestId, 10); // Convertir el ID de solicitud a número
+    return this.teacherService.findAllByStatusAndRequestId(isStatusActive, requestIdNumber);
+  }
+
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.teacherService.findOne(+id);
