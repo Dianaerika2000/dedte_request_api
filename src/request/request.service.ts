@@ -25,9 +25,8 @@ export class RequestService {
     });
 
     await this.requestRepository.save(request);
-    // console.log('newRequest', newRequest);
 
-    // await this.sendInvitationToTeachers(people, subject, description, request.id);
+    await this.sendInvitationToTeachers(people, subject, description, request.id);
 
     return {
       message: 'Solicitud enviada correctamente',
