@@ -31,13 +31,13 @@ export class CreateMailDto {
   event: EventDto;
 }
 
-export class CreateRquestMailDto {
+export class CreateRequestMailDto {
   @IsEmail()
   email: string;
 
-  @IsNumber()
-  cant: number;
+  @IsString()
+  subject: string;
 
-  @IsObject()
-  event: EventDto;
+  @IsString()
+  description: string;
 }

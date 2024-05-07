@@ -1,4 +1,4 @@
-import { IsBoolean, IsEmail } from "class-validator";
+import { IsBoolean, IsEmail, IsNumber } from "class-validator";
 
 export class CreateTeacherDto {
   @IsEmail()
@@ -6,4 +6,7 @@ export class CreateTeacherDto {
 
   @IsBoolean()
   status: boolean;
+
+  @IsNumber()
+  request_id: number;
 }

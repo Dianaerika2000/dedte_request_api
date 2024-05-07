@@ -39,13 +39,13 @@ export class RequestService {
   }
 
   async findOne(id: number) {
-    const event = await this.requestRepository.findOneBy({ id: id });
+    const request = await this.requestRepository.findOneBy({id});
 
-    if (!event) {
-      throw new NotFoundException('Event not found');
+    if (!request) {
+      throw new NotFoundException(`La solicitud con el ${id} no fue encontrado`);
     }
 
-    return event;
+    return request;
   }
 
   update(id: number, updateRequestDto: UpdateRequestDto) {

@@ -93,7 +93,6 @@ export class MailService {
       subject: subject,
       template: './solicitud',
       context: {
-        guess: email,
         description: description
       },
     });
