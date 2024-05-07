@@ -34,8 +34,8 @@ export class RequestService {
     };
   }
 
-  findAll() {
-    return `This action returns all request`;
+  async findAll() {
+    return await this.requestRepository.find();;
   }
 
   async findOne(id: number) {
